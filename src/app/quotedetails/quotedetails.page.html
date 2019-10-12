@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref = "tabs/library"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="quote">{{ quote.category | titlecase }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div *ngIf="quote">
+  <ion-card *ngFor="let item of quote.quotes">
+        <ion-card-header>
+          <ion-card-title [ngStyle]="{'fontSize': '1.5em'}"><em>{{ item.text }}</em></ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content>
+          <ion-label class="ion-float-right" [ngStyle]="{'color': 'darkgrey'}">
+            -{{item.person | titlecase }}
+          </ion-label>
+          <br>
+          <br>
+
+          <!-- Button -->
+          <ion-grid>
+            <ion-row *ngIf="!isQuoteSelected(item)">
+                <ion-col>
+                  <ion-button shape = "round" fill = "outline" color = "primary" expand="block" style="text-transform: none" (click)="showAdditionPopUp(item)"> Favourite </ion-button>
+                </ion-col>
+            </ion-row>
+          </ion-grid>
+          
+
+          <ion-grid>
+              <ion-row *ngIf="isQuoteSelected(item)">
+                  <ion-col>
+                    <ion-button shape = "round" fill = "outline" color = "danger" expand="block" style="text-transform: none" (click)="showRemovePopUp(item)"> Unfavourite </ion-button>
+                  </ion-col>
+              </ion-row>
+            </ion-grid>
+
+
+        </ion-card-content>
+      </ion-card>
+    </div>
+</ion-content>
+    
+

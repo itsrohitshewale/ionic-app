@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>My favourite</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <div *ngIf="favourites">
+      <ion-item *ngFor="let item of favourites">
+        <ion-label (click)="onQuoteSelected(item)">{{ item.text }}</ion-label>
+      </ion-item>
+    </div>
+  </ion-list>
+    <!-- <div *ngIf="favourites">
+        <ion-card *ngFor="let item of favourites">
+          <ion-card-header>
+            <ion-card-title [ngStyle]="{'fontSize': '1.5em'}"><em>{{ item.text }}</em></ion-card-title>
+          </ion-card-header>
+        
+          <ion-card-content>
+            <ion-label class="ion-float-right" [ngStyle]="{'color': 'darkgrey'}">
+              -{{item.person | titlecase }}
+            </ion-label>
+            <br>
+            <br>
+
+            <!-- Button -->
+            <!-- <ion-grid>
+              <ion-row >
+                <ion-col>
+                  <ion-button shape = "round" fill = "outline" color = "danger" expand="block" style="text-transform: none" (click)="showRemovePopUp(item)"> Unfavourite </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
+          </ion-card-content>
+      </ion-card> -->
+    <!-- </div> -->
+</ion-content>

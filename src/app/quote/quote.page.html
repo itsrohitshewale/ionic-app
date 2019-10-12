@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{quote.person | titlecase}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+ 
+  <ion-card>
+
+    <ion-card-content>
+      <p>
+        {{ quote.text }}
+      </p>
+
+      <ion-grid>
+
+        <ion-row>
+          <ion-col>
+            <ion-button size='large' color='danger' expand='full' fill='clear' (click)="onClose(true)">REMOVE FROM FAVOUTITES</ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-button size='large' color='primary' expand='full' fill='clear' (click)="onClose(false)">CLOSE</ion-button>
+          </ion-col>
+        </ion-row>
+        
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
