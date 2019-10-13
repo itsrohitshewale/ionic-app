@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { LoginService } from './service/login.service';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
-  { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule' },
+  { 
+    path: 'tabs', 
+    canActivate: [LoginService],
+    loadChildren: './tabs/tabs.module#TabsPageModule' 
+  },
   { path: 'quote', loadChildren: './quote/quote.module#QuotePageModule' },
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   
 ];
 
@@ -16,3 +22,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })  
 export class AppRoutingModule { }
+ 

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { IQuote } from '../model/quote.model';
-import { QUOTES_DATA } from '../model/quotes';
 import { Router } from '@angular/router';
 import { QuoteService } from '../service/quote.service';
+import { AuthService } from '../service/auth.service';
+
 
 @Component({
   selector: 'app-library',
@@ -14,15 +15,21 @@ export class LibraryPage implements OnInit {
   quotes : { category : string, quotes: IQuote[], icon : string }[] = []
   
   constructor(private router : Router,
-    private quoteService : QuoteService) { }
+    private quoteService : QuoteService,
+    private authService : AuthService) { }
 
   ngOnInit() {
-    this.quotes = QUOTES_DATA
+    
+    this.quoteService.getQuotesData()
+    .subscribe(response => {
+      this.quotes = <{ category : string, quotes: IQuote[], icon : string }[]> response;
+      console.log(response)
+    })
   }
+
   onCategorySelect(quotes : {category : string, quotes : IQuote[], icon : string}) {
     this.quoteService.setSelectedCategory(quotes)
     this.router.navigate(['tabs/quotedetails'])
-  
   }
 
 }

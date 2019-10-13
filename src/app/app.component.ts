@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-root',
@@ -23,5 +24,13 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    firebase.initializeApp({
+      apiKey: "AIzaSyCGticnGzaOzp5MB1TpcHNGeGex1QDOok4",
+      authDomain: "infracoredova.firebaseapp.com"
+    })
   }
 }
